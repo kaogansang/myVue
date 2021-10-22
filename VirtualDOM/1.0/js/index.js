@@ -1,16 +1,18 @@
-// import createElement from './createElement.js';
-
-// import {createElement} from "./createElement.js";
+// 工具对象
 let t = {
+    // 判断定义
     isDef(p) {
         return p !== undefined && p !== null;
     },
+    // 判断字符串
     isStr(p) {
         return typeof p === "string";
     },
+    // 判断Vnode实例
     isVnode(vnode) {
         return vnode instanceof Vnode;
     },
+    // 比较Vnode
     isSameVnode(vn1, vn2) {
         return (
             vn1.key === vn2.key &&
@@ -18,21 +20,26 @@ let t = {
             vn1.tagName === vn2.tagName
         );
     },
+    // 获得DOM节点标签类型
     getTag(el) {
         return el?.tagName;
     },
+    // DOM插入节点
     insertBefore(parentEl, newEl, oldEl) {
         if (!oldEl) return parentEl.appendChild(newEl);
         return parentEl.insertBefore(newEl, oldEl);
     },
+    // 删除Vnode节点
     removeVnode(vnode) {
         let el = vnode.el;
         let parentEl = el.parentNode;
         return parentEl.removeChild(el);
     },
+    // 设置DOM节点textContent
     setTextContent(node, text) {
         return (node.textContent = text);
     },
+    // 给DOM节点添加Vnode孩子
     addChilds(el, vnode, stargIndex, endIndex) {
         for (let i = stargIndex; i <= endIndex; i++) {
             let child = vnode.childs[i];
@@ -43,6 +50,7 @@ let t = {
         }
         return el;
     },
+    // 返回{key：inde}的Map实例
     getKeyMap(childs, start = 0, end = childs.length - 1) {
         // start = start || 0;
         // end = end || childs.length - 1;
@@ -54,6 +62,7 @@ let t = {
         }
         return map;
     },
+    // 获取下一个兄弟节点
     nextSibling(el) {
         return el.nextSibling;
     }
